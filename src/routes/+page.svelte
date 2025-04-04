@@ -33,7 +33,7 @@
         // Show the video background after 0.5 seconds
         setTimeout(() => {
             showVideo = true;
-        }, 500);
+        }, 1000);
 
         return () => clearInterval(timer);
     });
