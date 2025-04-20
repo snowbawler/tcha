@@ -1,7 +1,8 @@
 <script>
+    import confetti from 'canvas-confetti';
     import { onMount } from 'svelte';
 
-    const targetDate = new Date('May 4, 2025 20:00:00').getTime();
+    const targetDate = new Date('April 28, 2025 14:16:00').getTime();
 
     let days = '00';
     let hours = '00';
@@ -10,6 +11,31 @@
     let isPast = false;
     let showTimer = false; // Controls the fade-in effect
     let showVideo = false; // Controls the visibility of the video background
+
+
+    function launchConfetti() {
+    const duration = 200000000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 200, zIndex: 1000 };
+
+    const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now();
+
+        if (timeLeft <= 0) {
+        return clearInterval(interval);
+        }
+
+        const particleCount = 50 * (timeLeft / duration);
+        confetti({
+        ...defaults,
+        particleCount,
+        origin: {
+            x: Math.random(),
+            y: Math.random() - 0.2
+        }
+        });
+    }, 500);
+    }
 
     onMount(() => {
         const updateTimer = () => {
@@ -41,6 +67,15 @@
     const handleOpenClick = () => {
         showTimer = true; // Show the timer when "OPEN" is clicked
     };
+
+    $: if (isPast) {
+        showTimer = true;
+        setTimeout(() => {
+            showVideo = true;
+        }, 1000);
+        launchConfetti();
+    }
+    
 </script>
 
 <style>
@@ -124,7 +159,7 @@
     }
 </style>
 
-<div class="background {showVideo ? 'hidden' : ''}"></div>
+<div class="background"></div>
 
 <div class="video-background {showVideo ? 'visible' : ''}">
   <iframe
@@ -140,7 +175,7 @@
   <div class="container">
     <button class="logo open-button" on:click={handleOpenClick}>tcha tcha</button>
     {#if isPast}
-      <h1>🟢 OPEN</h1>
+      <h1 class="time show">OPEN</h1>
     {:else}
       <h1 class="time {showTimer ? 'show' : ''}">{days}d {hours}h {minutes}m {seconds}s</h1>
     {/if}
