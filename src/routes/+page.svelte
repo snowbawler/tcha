@@ -2,7 +2,7 @@
     import confetti from 'canvas-confetti';
     import { onMount } from 'svelte';
 
-    const targetDate = new Date('April 28, 2025 14:16:00').getTime();
+    const targetDate = new Date('April 30, 2025 10:00:00').getTime();
 
     let days = '00';
     let hours = '00';
