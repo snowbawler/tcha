@@ -164,7 +164,7 @@
 <div class="background"></div>
 
 <div class="video-background {showVideo ? 'visible' : ''}">
-  <video autoplay muted loop id='bg-video' src='milk.mov'></video>
+  <video autoplay muted loop playsinline id='bg-video' src='milk.mov'></video>
 </div>
 
 <div class="parent content">
@@ -177,5 +177,4 @@
     {/if}
   </div>
 </div>
-
 
