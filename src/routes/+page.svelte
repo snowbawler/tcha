@@ -146,12 +146,14 @@
     .video-background.visible {
         opacity: 30%;
     }
-    .video-background iframe {
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        transform: scale(1.5); /* Zoom in by 20% */
-        transform-origin: center; /* Keep the zoom centered */
+    #bg-video {
+    position: fixed;   /* sit on top of the page content */
+    top: 0;
+    left: 0;
+    width: 100vw;      /* full viewport width */
+    height: 100vh;     /* full viewport height */
+    object-fit: cover; /* scales & crops to fill */
+    z-index: -1;       /* send it behind any page content */
     }
     .content {
         position: relative;
@@ -162,13 +164,7 @@
 <div class="background"></div>
 
 <div class="video-background {showVideo ? 'visible' : ''}">
-  <iframe
-    src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&loop=1&playlist=dQw4w9WgXcQ&controls=0&modestbranding=1&rel=0&disablekb=1&fs=0&iv_load_policy=3&playsinline=1"
-    frameborder="0"
-    allow="autoplay; loop; fullscreen"
-    allowfullscreen
-    title="Rick Astley - Never Gonna Give You Up"
-  ></iframe>
+  <video autoplay muted loop id='bg-video' src='milk.mov'></video>
 </div>
 
 <div class="parent content">
@@ -181,4 +177,5 @@
     {/if}
   </div>
 </div>
+
 
