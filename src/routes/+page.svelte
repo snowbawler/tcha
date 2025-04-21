@@ -115,7 +115,7 @@
     }
     .open-button {
         font-family: 'ThierryLeonie', serif;
-        font-size: 6vw;
+        font-size: 10vw;
         color: #f4deb2;
         background: none;
         border: none;
@@ -158,6 +158,20 @@
     .content {
         position: relative;
         z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+        .logo {
+            font-size: 10vw; /* increase size on mobile */
+        }
+
+        .time {
+            font-size: 8vw; /* bigger countdown text on mobile */
+        }
+
+        .open-button {
+            font-size: 14vw; /* even bigger OPEN button */
+        }
     }
 </style>
 
